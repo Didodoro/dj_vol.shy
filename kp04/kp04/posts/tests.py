@@ -13,6 +13,8 @@ class PostTests(TestCase):
 
 class HomepageTest(TestCase):
 
+    text = "<h1> Домашня сторінка дошки оголошень</h1>"
+
     def test_url_exists_at_correct_location(self):
         responce = self.client.get("")
         self.assertEqual(responce.status_code, 200)
@@ -27,4 +29,4 @@ class HomepageTest(TestCase):
     
     def test_template_content(self):
         response = self.client.get(reverse("home"))
-        self.assertContains(response, "<h1> Домашня сторінка дошки оголошень</h1>") # перевіряємо наявність заголовку на сторінці
+        self.assertContains(response, HomepageTest.text) # перевіряємо наявність заголовку на сторінці
