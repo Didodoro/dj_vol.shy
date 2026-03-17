@@ -30,3 +30,9 @@ class HomepageTest(TestCase):
     def test_template_content(self):
         response = self.client.get(reverse("home"))
         self.assertContains(response, HomepageTest.text) # перевіряємо наявність заголовку на сторінці
+    
+    def test_database_as_dict(self):
+    # This returns a QuerySet of dictionaries
+        data = Post.objects.values() 
+        for row in data:
+            print(row)
