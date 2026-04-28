@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Атмосферні вимірювання</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header>
+    <div class="nav-left">
+        <h1><a href="{% url 'home' %}">Дошка вимірювань</a></h1>
+    </div>
+    <div class="nav-right">
+        {% if user.is_authenticated %}
+            <p>Вітаємо, {{ user.username }}!</p>
+            <a href="{% url 'post_new' %}">+ Додати допис</a>
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Вихід</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Вхід</a>
+            <a href="{% url 'signup' %}">Реєстрація</a>
+        {% endif %}
+    </div>
+</header>
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+</body>
+</html>

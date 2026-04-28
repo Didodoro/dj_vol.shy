@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="post-entry">
+    <h2>Вимірювання №{{ post.id }}</h2>
+    <p><strong>Текст:</strong> {{ post.text }}</p>
+    <p><strong>Дата:</strong> {{ post.date }}</p>
+    <p><strong>Температура:</strong> {{ post.temperature }} °C</p>
+    <p><strong>Тиск:</strong> {{ post.pressure }} мм.рт.ст.</p>
+    <p><strong>Швидкість вітру:</strong> {{ post.wind_speed }} м/с</p>
+    <p><strong>Ймовірність опадів:</strong> {{ post.precipitation_prob }} %</p>
+</div>
+{% endblock content %}

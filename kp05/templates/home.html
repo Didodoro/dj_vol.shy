@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>Текст</th>
+            <th>Дата</th>
+            <th>Температура, °C</th>
+            <th>Тиск, мм.рт.ст.</th>
+            <th>Швидкість вітру, м/с</th>
+            <th>Ймовірність опадів, %</th>
+        </tr>
+        {% for post in post_list %}
+<tr>
+    <td><a href="{% url 'post_detail' post.pk %}">{{ post.id }}</a></td>
+    
+    <td>{{ post.text }}</td>
+    <td>{{ post.date|date:"M. d, Y, P" }}</td>
+    <td>{{ post.temperature }}</td>
+    <td>{{ post.pressure }}</td>
+    <td>{{ post.wind_speed }}</td>
+    <td>{{ post.precipitation_prob }}</td>
+</tr>
+{% endfor %}
+    </table>
+{% endblock content %}
