@@ -19,7 +19,7 @@ class HomepageTest(SimpleTestCase):
     
     def test_template_content(self):
         response = self.client.get(reverse("home"))
-        self.assertContains(response, "<h1>Початкова сторінка</h1>") # перевіряємо наявність заголовку на сторінці
+        self.assertContains(response, "Base page") # перевіряємо наявність заголовку на сторінці
 
 class AboutpageTest(SimpleTestCase):
 
@@ -38,3 +38,41 @@ class AboutpageTest(SimpleTestCase):
     def test_template_content(self):
         response = self.client.get(reverse("about"))
         self.assertContains(response, "<h1>Сторірінка about</h1>") # перевіряємо наявність заголовку на сторінці
+
+
+class TextpageTest(SimpleTestCase):
+
+    def test_url_exists_at_correct_location(self):
+        responce = self.client.get("/text/")
+        self.assertEqual(responce.status_code, 200)
+    
+    def test_url_available_by_name(self):
+        response = self.client.get(reverse("text")) # звернення до сторінки за її псевдонімом
+        self.assertEqual(response.status_code, 200)
+    
+    def test_template_name_correct(self):
+        response = self.client.get(reverse("text"))
+        self.assertTemplateUsed(response, "text.html") # тестуємо  наявність шаблону сторінки
+    
+    def test_template_content(self):
+        response = self.client.get(reverse("text"))
+        self.assertContains(response, "text") # перевіряємо наявність заголовку на сторінці
+
+
+class ResumepageTest(SimpleTestCase):
+
+    def test_url_exists_at_correct_location(self):
+        responce = self.client.get("/resume/")
+        self.assertEqual(responce.status_code, 200)
+    
+    def test_url_available_by_name(self):
+        response = self.client.get(reverse("resume")) # звернення до сторінки за її псевдонімом
+        self.assertEqual(response.status_code, 200)
+    
+    def test_template_name_correct(self):
+        response = self.client.get(reverse("resume"))
+        self.assertTemplateUsed(response, "resume.html") # тестуємо  наявність шаблону сторінки
+    
+    def test_template_content(self):
+        response = self.client.get(reverse("resume"))
+        self.assertContains(response, "Resume") # перевіряємо наявність заголовку на сторінці
