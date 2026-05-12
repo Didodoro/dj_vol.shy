@@ -6,6 +6,8 @@ from django.utils import timezone
 class PostTests(TestCase):
     @classmethod
     def setUpTestData(cls):
+        cls.title = 'New title'
+        cls.body = 'Body content'
         cls.post = Post.objects.create(
             text="Перше вимірювання",
             date=timezone.now(),
@@ -39,3 +41,22 @@ class PostTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Перше вимірювання")
         self.assertTemplateUsed(response, 'post_detail.html')
+
+    #def test_post_deleteview(self):
+    #    response = self.client.post(
+    #        reverse('post_delete', args=['1'])
+    #    )
+    #    self.assertEqual(response.status_code, 302)
+
+    #def test_post_createview(self):
+    #    responce = self.client.post(
+    #        reverse('post_new'),
+     #       {
+      #          'title': self.title,
+       #         'body': self.body,
+        #    }
+        #)
+        #self.assertEqual(responce.status_code, 302)
+        #self.assertEqual(Post.objects.last().title,self.title)
+        #self.assertEqual(Post.objects.last().body,self.body)
+       

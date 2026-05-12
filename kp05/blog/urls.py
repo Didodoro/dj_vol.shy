@@ -1,8 +1,10 @@
 from django.urls import path
-from .views import PostListView, PostDetailView, PostCreateView # Імпортуйте нове представлення
+from .views import PostListView, PostDetailView, PostCreateView,BlogUpdateView,BlogDeleteView
 
 urlpatterns = [
     path('', PostListView.as_view(), name='home'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
-    path('post/new/', PostCreateView.as_view(), name='post_new'), # Новий шлях
+    path('post/new/', PostCreateView.as_view(), name='post_new'), 
+    path('post/<int:pk>/edit/', BlogUpdateView.as_view(),name='post_edit'),
+    path('post/<int:pk>/delete/', BlogDeleteView.as_view(),name='post_delete'),
 ]
