@@ -1,5 +1,6 @@
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView # Додайте цей імпорт
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from .models import Post
 
 class PostListView(ListView):
@@ -14,5 +15,15 @@ class PostDetailView(DetailView):
 class PostCreateView(CreateView):
     model = Post
     template_name = 'post_new.html'
-    # Вкажіть поля, які користувач має заповнити (без id та date, які заповнюються автоматично)
+
     fields = ['text', 'temperature', 'pressure', 'wind_speed', 'precipitation_prob']
+
+class BlogUpdateView(UpdateView):
+    model = Post
+    template_name = 'post_edit.html'
+    fields = ['text', 'temperature', 'pressure', 'wind_speed', 'precipitation_prob']
+
+class BlogDeleteView(DeleteView):
+    model = Post
+    template_name = 'post_delete.html'
+    success_url = reverse_lazy('home')
