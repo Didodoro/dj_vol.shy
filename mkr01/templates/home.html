@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<body>
+
+<h2>Дошка атмосферних вимірювань</h2>
+
+<table style="width:100%">
+  <tr>
+    <th>id</th>
+    <th>Текст</th>
+    <th>Дата</th>
+    <th>Температура, °C</th>
+    <th>Тиск, мм. рт. ст.</th>
+    <th>Швидкість вітру, м/с</th>
+    <th>Ймовірність опадів, %</th>
+  </tr>
+  {% for post in post_list %}
+  <tr>
+    <td>{{ post.id }}</td>
+    <td>{{ post.text }}</td>
+    <td>{{ post.data }}</td>
+    <td>{{ post.temperature }}</td>
+    <td>{{ post.pressure }}</td>
+    <td>{{ post.wind_speed }}</td>
+    <td>{{ post.dosh }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+</body>
+</html>
